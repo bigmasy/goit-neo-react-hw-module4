@@ -84,12 +84,11 @@ function App() {
       <div>
         <Toaster />
       </div>
-
       <SearchBar handleQuery={handleQuery} />
-      {error && <ErrorMessage />}
       {pictures.length > 0 && (
         <ImageGallery data={pictures} openModal={openModal} />
-      )}
+      )}{" "}
+      {error && <ErrorMessage />}
       {loading && <Loader />}
       {page < loadMore && !loading && !error && (
         <LoadMoreBtn onClick={handleLoadMore} />
