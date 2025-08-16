@@ -8,7 +8,6 @@ import { fetchPhotos } from "./services/api";
 import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "./components/ImageModal/ImageModal";
-import Modal from "react-modal";
 
 function App() {
   const [query, setQuery] = useState("");
@@ -78,7 +77,6 @@ function App() {
     setIsModalOpen(false);
   };
 
-  Modal.setAppElement("#root");
   return (
     <>
       <div>
@@ -93,14 +91,11 @@ function App() {
       {page < loadMore && !loading && !error && (
         <LoadMoreBtn onClick={handleLoadMore} />
       )}
-      <Modal
+      <ImageModal
         isOpen={isModalOpen}
-        onRequestClose={closeModal}
-        className="modalContent"
-        overlayClassName="overlay"
-      >
-        <ImageModal image={selectedImage} />
-      </Modal>
+        onClose={closeModal}
+        image={selectedImage}
+      />
     </>
   );
 }
